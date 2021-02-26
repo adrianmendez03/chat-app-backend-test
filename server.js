@@ -4,6 +4,7 @@ const { PORT = 3000, NODE_ENV = "development"} = process.env
 const cors = require('cors')
 const express = require('express')
 const app = express()
+const path = require('path')
 const http = require('http').createServer(app)
 const io = require('socket.io')(http)
 
