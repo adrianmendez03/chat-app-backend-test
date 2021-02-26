@@ -11,7 +11,7 @@ app.use(cors())
 app.use(express.json())
 
 app.get('/', (req, res) => {
-    res.json(__dirname + '/index.html')
+    res.json(path.join(__dirname, '/index.html'))
 })
 
 io.on('connection', socket => {
