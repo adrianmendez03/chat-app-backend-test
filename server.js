@@ -1,18 +1,13 @@
 require('dotenv').config()
 const { PORT = 3000, NODE_ENV = "development"} = process.env
 
-const cors = require('cors')
 const express = require('express')
 const app = express()
-const path = require('path')
 const http = require('http').createServer(app)
 const io = require('socket.io')(http)
 
-app.use(cors())
-app.use(express.json())
-
 app.get('/', (req, res) => {
-    res.json(path.join(__dirname, '/index.html'))
+    res.sendFile(__dirname + '/index.html')
 })
 
 io.on('connection', socket => {
@@ -26,6 +21,6 @@ io.on('connection', socket => {
     })
 })
 
-app.listen(PORT, () => {
+http.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)
 })
